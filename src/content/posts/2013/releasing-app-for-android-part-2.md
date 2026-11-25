@@ -11,7 +11,7 @@ tags:
 description: "Part 2 of lessons from releasing my first Android app: free and paid editions, AdMob advertising, localisation, Proguard, signing, and Maven vs SBT."
 ---
 
-Continuing on from [part 1](/posts/2013/releasing-app-for-android-part-1)...
+Continuing on from [part 1](/blog/posts/2013/releasing-app-for-android-part-1)...
 
 ## 4. Free and Paid Editions.
 

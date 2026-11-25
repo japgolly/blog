@@ -8,7 +8,7 @@ tags:
 description: A practical, beginner-friendly walkthrough of functional programming in Scala, incrementally building a composable user-data validation library across five evolving requirements.
 ---
 
-Many people, after reading my [previous blog post](/posts/2014/a-year-of-functional-programming), asked to see a practical example of FP with code. I know it's been a few months – I actually got married recently; wedding planning is _very_ time consuming – but I've finally come up with an example. Please enjoy.
+Many people, after reading my [previous blog post](/blog/posts/2014/a-year-of-functional-programming), asked to see a practical example of FP with code. I know it's been a few months – I actually got married recently; wedding planning is _very_ time consuming – but I've finally come up with an example. Please enjoy.
 
 Most introductions to FP begin with pleas for immutability but I'm going to do something different. I've come up with a real-world example that's not too contrived. It's about validating user data. There will be 5 incremental requirements that you can imagine coming in sequentially, each one building on the other. We'll code to satisfy each requirement incrementally without peeking at the following requirements. We'll code with an FP mindset and use Scala to do so but the language isn't important. This isn't about Scala. It's about principals and a perspective of thought. You can write FP in Java (if you enjoy pain) and you can write OO in Haskell (I know someone who does this and baffles his friends). The language you use affects the ease of writing FP, but FP isn't bound to or defined by any one language. It's more than that. If you don't use Scala this will still be applicable and useful to you.
 

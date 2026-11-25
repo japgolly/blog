@@ -21,7 +21,7 @@ The internet is rich with blogs and videos on theory that explain it better than
 ## Before you start...
 
 If you don't know what I mean by any of the following,
-read or skim [chapter 1 of this series](/posts/2017/practical-awesome-recursion-ch-01).
+read or skim [chapter 1 of this series](/blog/posts/2017/practical-awesome-recursion-ch-01).
 
 - `Fix[_]`
 - `IntList` / `IntListF[_]`

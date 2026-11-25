@@ -2,9 +2,9 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://astro-paper.pages.dev/", // TODO
+    url: "https://japgolly.github.io/blog/",
     title: "@japgolly Tech Blog",
-    description: "A tech blog, mostly about Scala.",
+    description: "A tech blog, mostly about FP and Scala.",
     author: "David Barri (@japgolly)",
     // profile: "https://satna.ing",
     ogImage: "default-og.jpg",

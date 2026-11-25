@@ -84,7 +84,7 @@ What [scala-graal](https://github.com/japgolly/scala-graal) is going to give us 
 - make calling JS from JVM nice, easy, and safe by providing a concise, Scala-friendly interface
 - allow interpolation, meaning you don't have to worry about safely marshalling arguments and composing with your commands
 - pre-compilation of your SSR
-- huge performance increases to your SSR - either by a special type of caching (to be covered in [part 2](/posts/2020/scala-react-and-ssr-part-2) of this article) or by JIT warmup
+- huge performance increases to your SSR - either by a special type of caching (to be covered in [part 2](/blog/posts/2020/scala-react-and-ssr-part-2) of this article) or by JIT warmup
 - helpers for SSR specifically
 - we won't use them here, but there are a bunch of other features like thread-pools, async, time-limits, metrics and more
   so check that out in [scala-graal's doc](https://github.com/japgolly/scala-graal) if you're interested.
@@ -381,7 +381,7 @@ and warming up contexts which you can use on startup.
 
 But there's an even better way. We can make this constant time (no more JIT fluctuation),
 and we can make it consistently take ≤1ms. It doesn't work for all types of components,
-but it does work for many. This article is long enough so stay tuned for [part 2](/posts/2020/scala-react-and-ssr-part-2)...
+but it does work for many. This article is long enough so stay tuned for [part 2](/blog/posts/2020/scala-react-and-ssr-part-2)...
 
 ---
 

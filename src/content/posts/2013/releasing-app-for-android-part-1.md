@@ -186,4 +186,4 @@ end
 
 ## To be continued...
 
-I have 6 more points. Read about them [in part 2](/posts/2013/releasing-app-for-android-part-2).
+I have 6 more points. Read about them [in part 2](/blog/posts/2013/releasing-app-for-android-part-2).
