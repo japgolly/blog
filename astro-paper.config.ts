@@ -14,7 +14,7 @@ export default defineAstroPaperConfig({
   },
   posts: {
     perPage: 10,
-    perIndex: 10,
+    perIndex: 4,
   },
   features: {
     lightAndDarkMode: true,
