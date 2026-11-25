@@ -1,0 +1,16 @@
+---
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    "my-6 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-0 [&>div]:min-w-0 [&>div:first-child]:sm:pe-4 [&>div:not(:first-child)]:sm:border-s-2 [&>div:not(:first-child)]:sm:border-border [&>div:not(:first-child)]:sm:ps-4",
+    className,
+  ]}
+>
+  <slot />
+</div>
