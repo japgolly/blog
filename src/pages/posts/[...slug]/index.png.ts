@@ -13,9 +13,7 @@ export async function getStaticPaths() {
     return [];
   }
 
-  const posts = await getCollection("posts").then(p =>
-    p.filter(post => postFilter(post) && !post.data.ogImage)
-  );
+  const posts = await getCollection("posts").then(p => p.filter(post => postFilter(post) && !post.data.ogImage));
 
   return posts.map(post => ({
     params: { slug: getPostSlug(post.id, post.filePath) },
@@ -37,12 +35,8 @@ export const GET: APIRoute = async ({ props, url }) => {
   }
 
   const [regularData, boldData] = await Promise.all([
-    fetch(experimental_getFontFileURL(regularFontPath, url)).then(res =>
-      res.arrayBuffer()
-    ),
-    fetch(experimental_getFontFileURL(boldFontPath, url)).then(res =>
-      res.arrayBuffer()
-    ),
+    fetch(experimental_getFontFileURL(regularFontPath, url)).then(res => res.arrayBuffer()),
+    fetch(experimental_getFontFileURL(boldFontPath, url)).then(res => res.arrayBuffer()),
   ]);
 
   const svg = await satori(

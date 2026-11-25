@@ -193,12 +193,7 @@ const items = withToc ? buildTocTree(headings) : [];
     border-radius: inherit;
     background:
       conic-gradient(var(--color-accent) var(--progress, 0%), transparent 0),
-      radial-gradient(
-        closest-side,
-        transparent calc(100% - 4px),
-        var(--fab-track) 0 calc(100% - 2px),
-        transparent 0
-      );
+      radial-gradient(closest-side, transparent calc(100% - 4px), var(--fab-track) 0 calc(100% - 2px), transparent 0);
   }
   /* Only with a real pointer: on touch screens hover sticks after a tap. */
   @media (hover: hover) {

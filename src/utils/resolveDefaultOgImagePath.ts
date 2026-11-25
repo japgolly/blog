@@ -21,24 +21,14 @@ function existsInPublic(filename: string): boolean {
  *   otherwise falls back to the generated `/og.png`.
  * - When disabled, requires `public/{site.ogImage}` to exist.
  */
-export function resolveDefaultOgImagePath(
-  config: ResolvedAstroPaperConfig
-): string {
+export function resolveDefaultOgImagePath(config: ResolvedAstroPaperConfig): string {
   const filename = config.site.ogImage;
-  if (
-    filename.includes("..") ||
-    filename.includes("/") ||
-    filename.includes("\\")
-  ) {
-    throw new Error(
-      `site.ogImage must be a single filename in public/ (e.g. "default-og.jpg"), got "${filename}"`
-    );
+  if (filename.includes("..") || filename.includes("/") || filename.includes("\\")) {
+    throw new Error(`site.ogImage must be a single filename in public/ (e.g. "default-og.jpg"), got "${filename}"`);
   }
 
   if (config.features.dynamicOgImage) {
-    return existsInPublic(filename)
-      ? getAssetPath(filename)
-      : getAssetPath("og.png");
+    return existsInPublic(filename) ? getAssetPath(filename) : getAssetPath("og.png");
   }
 
   if (!existsInPublic(filename)) {

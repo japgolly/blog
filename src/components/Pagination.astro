@@ -17,11 +17,7 @@ const t = useTranslations(Astro.currentLocale);
 
 {
   page.lastPage > 1 && (
-    <nav
-      class="mt-auto mb-8 flex justify-center gap-4"
-      role="navigation"
-      aria-label="Pagination Navigation"
-    >
+    <nav class="mt-auto mb-8 flex justify-center gap-4" role="navigation" aria-label="Pagination Navigation">
       <LinkButton
         disabled={!page.url.prev}
         href={page.url.prev as string}

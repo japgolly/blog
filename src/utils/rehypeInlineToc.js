@@ -6,10 +6,7 @@ import { buildTocTree } from "./buildTocTree";
 const TOC_HEADING = /^(table[ -]of[ -])?contents?$|^toc$/i;
 const HEADING_TAG = /^h([1-6])$/;
 
-const textOf = node =>
-  node.type === "text"
-    ? node.value
-    : (node.children ?? []).map(textOf).join("");
+const textOf = node => (node.type === "text" ? node.value : (node.children ?? []).map(textOf).join(""));
 
 const list = items => ({
   type: "element",
@@ -52,8 +49,7 @@ export const rehypeInlineToc =
 
     const walk = parent => {
       parent.children?.forEach((node, index) => {
-        const level =
-          node.type === "element" && HEADING_TAG.exec(node.tagName)?.[1];
+        const level = node.type === "element" && HEADING_TAG.exec(node.tagName)?.[1];
         if (!level) return walk(node);
 
         const text = textOf(node).trim();
@@ -108,8 +104,7 @@ const usesTocHeading = source => {
   for (const line of source.split("\n")) {
     const [, marks, rest] = FENCE.exec(line) ?? [];
     if (fence) {
-      const closes =
-        marks?.[0] === fence[0] && marks.length >= fence.length && !rest.trim();
+      const closes = marks?.[0] === fence[0] && marks.length >= fence.length && !rest.trim();
       if (closes) fence = "";
     } else if (marks) {
       fence = marks;

@@ -88,16 +88,11 @@ if (typeof initOgImage === "string") {
 }
 
 if (!ogImageUrl && config.features.dynamicOgImage) {
-  const postUrl = getPostUrl(post.id, post.filePath, locale).replace(
-    /\/+$/,
-    ""
-  );
+  const postUrl = getPostUrl(post.id, post.filePath, locale).replace(/\/+$/, "");
   ogImageUrl = `${postUrl}/index.png`;
 }
 
-const ogImage = ogImageUrl
-  ? new URL(ogImageUrl, Astro.url.origin).href
-  : undefined;
+const ogImage = ogImageUrl ? new URL(ogImageUrl, Astro.url.origin).href : undefined;
 ---
 
 <PostLayout
@@ -112,11 +107,7 @@ const ogImage = ogImageUrl
 
   <BackButton />
 
-  <main
-    id="main-content"
-    class:list={["app-layout", { "mt-8": !config.features.showBackButton }]}
-    data-pagefind-body
-  >
+  <main id="main-content" class:list={["app-layout", { "mt-8": !config.features.showBackButton }]} data-pagefind-body>
     <h1
       style={{ viewTransitionName: toTransitionName(post.id) }}
       class="text-accent inline-block text-2xl font-bold sm:text-3xl"
@@ -159,11 +150,7 @@ const ogImage = ogImageUrl
     <div class="sm:my-8 sm:flex sm:items-start sm:justify-between sm:gap-8">
       <div class="mt-4 mb-8 flex items-start justify-between gap-4 sm:my-0">
         <ul class="flex flex-wrap gap-4">
-          {
-            tags.map(tag => (
-              <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />
-            ))
-          }
+          {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
         </ul>
         <EditPost class="flex-none sm:hidden" {hideEditPost} {post} />
       </div>
@@ -185,8 +172,7 @@ const ogImage = ogImageUrl
 <script is:inline data-astro-rerun>
   function createProgressBar() {
     const progressContainer = document.createElement("div");
-    progressContainer.className =
-      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+    progressContainer.className = "progress-container fixed top-0 z-10 h-1 w-full bg-background";
 
     const progressBar = document.createElement("div");
     progressBar.className = "progress-bar h-1 w-0 bg-accent";
@@ -199,11 +185,8 @@ const ogImage = ogImageUrl
 
   function updateScrollProgress() {
     document.addEventListener("scroll", () => {
-      const winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop;
-      const height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
       if (document) {
         const myBar = document.getElementById("myBar");
@@ -216,9 +199,7 @@ const ogImage = ogImageUrl
   updateScrollProgress();
 
   function addHeadingLinks() {
-    const headings = Array.from(
-      document.querySelectorAll("#article :is(h2, h3, h4, h5, h6)")
-    );
+    const headings = Array.from(document.querySelectorAll("#article :is(h2, h3, h4, h5, h6)"));
     for (const heading of headings) {
       heading.classList.add("group");
       const link = document.createElement("a");
@@ -244,12 +225,9 @@ const ogImage = ogImageUrl
       wrapper.style.position = "relative";
 
       const computedStyle = getComputedStyle(codeBlock);
-      const hasFileNameOffset =
-        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+      const hasFileNameOffset = computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
 
-      const topClass = hasFileNameOffset
-        ? "top-(--file-name-offset)"
-        : "-top-3";
+      const topClass = hasFileNameOffset ? "top-(--file-name-offset)" : "-top-3";
 
       const copyButton = document.createElement("button");
       copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
@@ -285,8 +263,7 @@ const ogImage = ogImageUrl
     const article = document.getElementById("article");
     if (!article) return;
 
-    const prefersReducedMotion = () =>
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let overlay = null;
     let lastFocused = null;
@@ -301,10 +278,7 @@ const ogImage = ogImageUrl
         image.setAttribute("role", "button");
         image.setAttribute("tabindex", "0");
         image.setAttribute("aria-haspopup", "dialog");
-        image.setAttribute(
-          "aria-label",
-          image.alt ? `Zoom image: ${image.alt}` : "Zoom image"
-        );
+        image.setAttribute("aria-label", image.alt ? `Zoom image: ${image.alt}` : "Zoom image");
       }
     });
 
@@ -315,10 +289,7 @@ const ogImage = ogImageUrl
       overlay = document.createElement("div");
       overlay.setAttribute("role", "dialog");
       overlay.setAttribute("aria-modal", "true");
-      overlay.setAttribute(
-        "aria-label",
-        alt ? `Image preview: ${alt}` : "Image preview"
-      );
+      overlay.setAttribute("aria-label", alt ? `Image preview: ${alt}` : "Image preview");
       overlay.className =
         "fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-200 motion-reduce:transition-none";
 
@@ -370,14 +341,8 @@ const ogImage = ogImageUrl
       // Keep the zoomed image from being panned past its edges.
       function clampTranslate() {
         if (!overlay) return;
-        const maxX = Math.max(
-          0,
-          (image.clientWidth - overlay.clientWidth / currentScale) / 2
-        );
-        const maxY = Math.max(
-          0,
-          (image.clientHeight - overlay.clientHeight / currentScale) / 2
-        );
+        const maxX = Math.max(0, (image.clientWidth - overlay.clientWidth / currentScale) / 2);
+        const maxY = Math.max(0, (image.clientHeight - overlay.clientHeight / currentScale) / 2);
         translateX = Math.min(maxX, Math.max(-maxX, translateX));
         translateY = Math.min(maxY, Math.max(-maxY, translateY));
       }
@@ -388,10 +353,7 @@ const ogImage = ogImageUrl
           const t = e.touches;
           if (t.length === 2) {
             image.setAttribute("data-zoom", "drag");
-            initialDist = Math.hypot(
-              t[1].clientX - t[0].clientX,
-              t[1].clientY - t[0].clientY
-            );
+            initialDist = Math.hypot(t[1].clientX - t[0].clientX, t[1].clientY - t[0].clientY);
             initialScale = currentScale;
           } else if (t.length === 1) {
             const now = Date.now();
@@ -432,35 +394,25 @@ const ogImage = ogImageUrl
           const t = e.touches;
           if (t.length === 2) {
             e.preventDefault();
-            const dist = Math.hypot(
-              t[1].clientX - t[0].clientX,
-              t[1].clientY - t[0].clientY
-            );
+            const dist = Math.hypot(t[1].clientX - t[0].clientX, t[1].clientY - t[0].clientY);
             const oldScale = currentScale;
-            currentScale = Math.min(
-              4,
-              Math.max(1, initialScale * (dist / initialDist))
-            );
+            currentScale = Math.min(4, Math.max(1, initialScale * (dist / initialDist)));
 
             // Zoom to the geometric center of the two fingers
             const midX = (t[0].clientX + t[1].clientX) / 2;
             const midY = (t[0].clientY + t[1].clientY) / 2;
             const ox = overlay.clientWidth / 2;
             const oy = overlay.clientHeight / 2;
-            translateX =
-              (midX - ox) * (1 / currentScale - 1 / oldScale) + translateX;
-            translateY =
-              (midY - oy) * (1 / currentScale - 1 / oldScale) + translateY;
+            translateX = (midX - ox) * (1 / currentScale - 1 / oldScale) + translateX;
+            translateY = (midY - oy) * (1 / currentScale - 1 / oldScale) + translateY;
             clampTranslate();
             applyTransform();
           } else if (t.length === 1) {
             if (currentScale > 1) {
               e.preventDefault();
               image.setAttribute("data-zoom", "drag");
-              translateX =
-                panStartTranslateX + (t[0].clientX - panStartX) / currentScale;
-              translateY =
-                panStartTranslateY + (t[0].clientY - panStartY) / currentScale;
+              translateX = panStartTranslateX + (t[0].clientX - panStartX) / currentScale;
+              translateY = panStartTranslateY + (t[0].clientY - panStartY) / currentScale;
               clampTranslate();
               applyTransform();
             } else {
@@ -508,10 +460,8 @@ const ogImage = ogImageUrl
             // Zoom to cursor: adjust translate so the point under cursor stays fixed
             const ox = overlay.clientWidth / 2;
             const oy = overlay.clientHeight / 2;
-            translateX =
-              (e.clientX - ox) * (1 / currentScale - 1 / oldScale) + translateX;
-            translateY =
-              (e.clientY - oy) * (1 / currentScale - 1 / oldScale) + translateY;
+            translateX = (e.clientX - ox) * (1 / currentScale - 1 / oldScale) + translateX;
+            translateY = (e.clientY - oy) * (1 / currentScale - 1 / oldScale) + translateY;
             clampTranslate();
             applyTransform();
           }
@@ -537,10 +487,8 @@ const ogImage = ogImageUrl
 
       function onMouseMove(e) {
         if (!isMouseDown || !overlay) return;
-        translateX =
-          panStartTranslateX + (e.clientX - mouseStartX) / currentScale;
-        translateY =
-          panStartTranslateY + (e.clientY - mouseStartY) / currentScale;
+        translateX = panStartTranslateX + (e.clientX - mouseStartX) / currentScale;
+        translateY = panStartTranslateY + (e.clientY - mouseStartY) / currentScale;
         clampTranslate();
         applyTransform();
       }
@@ -606,9 +554,7 @@ const ogImage = ogImageUrl
     // Keep keyboard focus inside the open dialog.
     function trapFocus(e) {
       if (!overlay) return;
-      const focusables = overlay.querySelectorAll(
-        'a[href], button, [tabindex]:not([tabindex="-1"])'
-      );
+      const focusables = overlay.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
       if (focusables.length === 0) return;
       const first = focusables[0];
       const last = focusables[focusables.length - 1];
@@ -650,12 +596,8 @@ const ogImage = ogImageUrl
 
   if (!window.__lightboxSwapBound) {
     window.__lightboxSwapBound = true;
-    document.addEventListener("astro:before-swap", () =>
-      window.__closeLightbox?.()
-    );
+    document.addEventListener("astro:before-swap", () => window.__closeLightbox?.());
   }
 
-  document.addEventListener("astro:after-swap", () =>
-    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
-  );
+  document.addEventListener("astro:after-swap", () => window.scrollTo({ left: 0, top: 0, behavior: "instant" }));
 </script>

@@ -24,10 +24,7 @@ const t = useTranslations(locale);
 <div data-pagefind-ignore class="my-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
   {
     prevPost && (
-      <a
-        href={getPostUrl(prevPost.id, prevPost.filePath, locale)}
-        class="flex w-full gap-1 hover:opacity-75"
-      >
+      <a href={getPostUrl(prevPost.id, prevPost.filePath, locale)} class="flex w-full gap-1 hover:opacity-75">
         <IconArrowLeft class="inline-block flex-none rtl:rotate-180" />
         <div>
           <span>{t.post.previousPost}</span>

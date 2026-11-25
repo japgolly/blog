@@ -1,9 +1,4 @@
-import {
-  defineConfig,
-  envField,
-  fontProviders,
-  svgoOptimizer,
-} from "astro/config";
+import { defineConfig, envField, fontProviders, svgoOptimizer } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
@@ -16,10 +11,7 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { rehypeTableWrapper } from "./src/utils/rehypeTableWrapper";
-import {
-  inlineTocDeprecation,
-  rehypeInlineToc,
-} from "./src/utils/rehypeInlineToc";
+import { inlineTocDeprecation, rehypeInlineToc } from "./src/utils/rehypeInlineToc";
 import config from "./astro-paper.config";
 
 export default defineConfig({
@@ -27,8 +19,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: page =>
-        config.features?.showArchives !== false || !/\/archives\/?$/.test(page),
+      filter: page => config.features?.showArchives !== false || !/\/archives\/?$/.test(page),
     }),
     inlineTocDeprecation(),
   ],
@@ -44,12 +35,7 @@ export default defineConfig({
     // stay in package.json so a customised config importing them still builds,
     // and are removed in v8.
     processor: unified({
-      rehypePlugins: [
-        rehypeHeadingIds,
-        rehypeInlineToc,
-        rehypeCallouts,
-        rehypeTableWrapper,
-      ],
+      rehypePlugins: [rehypeHeadingIds, rehypeInlineToc, rehypeCallouts, rehypeTableWrapper],
     }),
     shikiConfig: {
       themes: { light: "min-light", dark: "night-owl" },

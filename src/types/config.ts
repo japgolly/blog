@@ -110,17 +110,7 @@ interface AstroPaperConfig {
 }
 
 type ResolvedSiteConfig = Required<
-  Pick<
-    SiteConfig,
-    | "url"
-    | "title"
-    | "description"
-    | "author"
-    | "lang"
-    | "timezone"
-    | "dir"
-    | "ogImage"
-  >
+  Pick<SiteConfig, "url" | "title" | "description" | "author" | "lang" | "timezone" | "dir" | "ogImage">
 > &
   Pick<SiteConfig, "profile" | "googleVerification">;
 
@@ -136,8 +126,6 @@ export interface ResolvedAstroPaperConfig {
  * Type helper for astro-paper.config.ts.
  * Provides full IntelliSense without any runtime overhead.
  */
-export function defineAstroPaperConfig(
-  config: AstroPaperConfig
-): AstroPaperConfig {
+export function defineAstroPaperConfig(config: AstroPaperConfig): AstroPaperConfig {
   return config;
 }

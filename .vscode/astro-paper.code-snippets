@@ -20,13 +20,7 @@
   "Blog Template": {
     "scope": "markdown",
     "prefix": "template",
-    "body": [
-      "${1:frontmatter}",
-      "",
-      "${2: Introductory Sentence}",
-      "",
-      "## ${3: heading 1}",
-    ],
+    "body": ["${1:frontmatter}", "", "${2: Introductory Sentence}", "", "## ${3: heading 1}"],
     "description": "Adds the template for the AstroPaper Blog post. You will need to trigger the snippet modal on the 'frontmatter' line to insert the other snipper.",
   },
 }

@@ -8,8 +8,7 @@
 export const rehypeTableWrapper = () => tree => {
   const wrap = node => {
     if (!node.children) return;
-    if (node.type === "mdxJsxFlowElement" && node.name === "ResponsiveTable")
-      return;
+    if (node.type === "mdxJsxFlowElement" && node.name === "ResponsiveTable") return;
 
     node.children = node.children.map(child => {
       if (child.type === "element" && child.tagName === "table") {

@@ -15,12 +15,8 @@ export const GET: APIRoute = async context => {
   }
 
   const [regularData, boldData] = await Promise.all([
-    fetch(experimental_getFontFileURL(regularFontPath, context.url)).then(res =>
-      res.arrayBuffer()
-    ),
-    fetch(experimental_getFontFileURL(boldFontPath, context.url)).then(res =>
-      res.arrayBuffer()
-    ),
+    fetch(experimental_getFontFileURL(regularFontPath, context.url)).then(res => res.arrayBuffer()),
+    fetch(experimental_getFontFileURL(boldFontPath, context.url)).then(res => res.arrayBuffer()),
   ]);
 
   const svg = await satori(

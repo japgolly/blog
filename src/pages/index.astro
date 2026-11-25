@@ -27,16 +27,9 @@ const homePath = getRelativeLocaleUrl(locale, "");
 
 <Layout>
   <Header />
-  <main
-    id="main-content"
-    data-layout="index"
-    data-home-path={homePath}
-    class="app-layout my-1"
-  >
+  <main id="main-content" data-layout="index" data-home-path={homePath} class="app-layout my-1">
     <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
-      </h1>{" "}
+      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">Mingalaba</h1>{" "}
       <a
         target="_blank"
         href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
@@ -44,18 +37,13 @@ const homePath = getRelativeLocaleUrl(locale, "");
         aria-label="RSS Feed"
         title="RSS Feed"
       >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
+        <IconRss width={20} height={20} class="stroke-accent scale-125 stroke-3 rtl:-rotate-90" />
         <span class="sr-only">RSS Feed</span>
       </a>
 
       <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
+        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro blog theme. This theme follows best
+        practices and provides accessibility out of the box. Light and dark mode are supported by default. Moreover,
         additional color schemes can also be configured.
       </p>
       <p class="mt-2">
@@ -71,9 +59,7 @@ const homePath = getRelativeLocaleUrl(locale, "");
       {
         socials.length > 0 && (
           <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
-            </div>
+            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">{t.home.socialLinks}:</div>
             <Socials />
           </div>
         )
@@ -82,16 +68,8 @@ const homePath = getRelativeLocaleUrl(locale, "");
 
     {
       featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
+        <section id="featured" class:list={["pt-12 pb-6", { "border-border border-b": recentPosts.length > 0 }]}>
+          <h2 class="text-2xl font-semibold tracking-wide">{t.home.featured}</h2>
           <ul>
             {featuredPosts.map(data => (
               <Card variant="h3" {...data} />
@@ -104,9 +82,7 @@ const homePath = getRelativeLocaleUrl(locale, "");
     {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
+          <h2 class="text-2xl font-semibold tracking-wide">{t.home.recentPosts}</h2>
           <ul>
             {recentPosts.slice(0, postsConfig.perIndex).map(data => (
               <Card variant="h3" {...data} />
@@ -128,8 +104,7 @@ const homePath = getRelativeLocaleUrl(locale, "");
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset;
+    const indexLayout = (document.querySelector("#main-content") as HTMLElement)?.dataset;
     const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
     if (indexLayout?.layout) {
       sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);

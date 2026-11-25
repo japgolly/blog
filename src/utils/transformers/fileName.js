@@ -11,15 +11,11 @@
  *   - `"v2"`: Badge-style with border, positioned at top-left with offset
  * @param {boolean} [options.hideDot=false] - Whether to hide the green dot indicator
  */
-export const transformerFileName = ({
-  style = "v2",
-  hideDot = false,
-} = {}) => ({
+export const transformerFileName = ({ style = "v2", hideDot = false } = {}) => ({
   pre(node) {
     // Add CSS custom property to the node
     const fileNameOffset = style === "v1" ? "0.75rem" : "-0.75rem";
-    node.properties.style =
-      (node.properties.style || "") + `--file-name-offset: ${fileNameOffset};`;
+    node.properties.style = (node.properties.style || "") + `--file-name-offset: ${fileNameOffset};`;
 
     const raw = this.options.meta?.__raw?.split(" ");
 
@@ -38,10 +34,7 @@ export const transformerFileName = ({
     if (!file) return;
 
     // Add additional margin and top padding to code block
-    this.addClassToHast(
-      node,
-      `mt-8 pt-4.5 ${style === "v1" ? "rounded-tl-none" : ""}`
-    );
+    this.addClassToHast(node, `mt-8 pt-4.5 ${style === "v1" ? "rounded-tl-none" : ""}`);
 
     // Add file name to code block
     node.children.push({

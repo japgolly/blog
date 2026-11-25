@@ -40,16 +40,10 @@ const items = buildTocTree(headings);
     cleanup?.();
     cleanup = undefined;
 
-    const links = Array.from(
-      document.querySelectorAll<HTMLAnchorElement>(
-        "[data-toc-nav] a[href^='#']"
-      )
-    );
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-nav] a[href^='#']"));
     if (!links.length) return;
 
-    const headings = [
-      ...new Set(links.map(link => decodeURIComponent(link.hash.slice(1)))),
-    ]
+    const headings = [...new Set(links.map(link => decodeURIComponent(link.hash.slice(1))))]
       .map(id => document.getElementById(id))
       .filter(heading => heading !== null);
 
@@ -81,14 +75,10 @@ const items = buildTocTree(headings);
         else link.removeAttribute("aria-current");
 
         // Keep the active item in view when the TOC itself scrolls.
-        const list = link.closest<HTMLElement>(
-          ":is(.toc-side, .toc-popover) nav > ol"
-        );
+        const list = link.closest<HTMLElement>(":is(.toc-side, .toc-popover) nav > ol");
         if (isActive && list && list.scrollHeight > list.clientHeight) {
           const top = link.offsetTop - list.clientHeight / 2;
-          const reduced = matchMedia(
-            "(prefers-reduced-motion: reduce)"
-          ).matches;
+          const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
           list.scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
         }
       }
@@ -241,10 +231,7 @@ const items = buildTocTree(headings);
       --toc-gap: clamp(0.75rem, calc(var(--toc-space) - 14.5rem), 2.5rem);
       --toc-edge: clamp(0.75rem, calc(var(--toc-space) - 15.5rem), 1.5rem);
       margin-inline-start: var(--toc-gap);
-      width: min(
-        16rem,
-        calc(var(--toc-space) - var(--toc-gap) - var(--toc-edge))
-      );
+      width: min(16rem, calc(var(--toc-space) - var(--toc-gap) - var(--toc-edge)));
       container-type: inline-size;
     }
     /* Too narrow to read, so the floating button takes over. */
