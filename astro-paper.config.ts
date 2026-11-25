@@ -7,7 +7,7 @@ export default defineAstroPaperConfig({
     description: "A tech blog, mostly about FP and Scala.",
     author: "David Barri (@japgolly)",
     // profile: "https://satna.ing",
-    ogImage: "default-og.jpg",
+    // ogImage: "default-og.jpg",
     lang: "en",
     timezone: "Australia/Melbourne",
     dir: "ltr",
