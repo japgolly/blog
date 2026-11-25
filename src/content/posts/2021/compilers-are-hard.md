@@ -12,16 +12,16 @@ description: Writing (something like) a compiler is hard. Here I explore what so
 ---
 
 I've often heard that writing a compiler is hard, and different than writing other kinds of software.
-Some recent experience hsa provided me insight as to why this is the case and proved quite interesting!
+Some recent experience has provided me insight as to why this is the case and proved quite interesting!
 
-I recently completed work on a new big feature in [ShipReq](https://shipreq.com). I'd been working on it for ~2 months and it ended up being the hardest code that I'd ever written in my life.
+I recently completed work on a new big feature in [ShipReq](https://github.com/shipreq/shipreq). I'd been working on it for ~2 months and it ended up being the hardest code that I'd ever written in my life.
 I've been coding for decades and have worked on so many different projects, and for some very big organisations;
 I tell you this for context. When I say this is the hardest code I've _ever written_, it had a lot of competition.
 Concurrent systems usually has the reputation of being very difficult and I've designed and written a massively concurrent project
 from the ground up in my OO days, included writing all the scheduling and concurrency primitives, and managing all the thread-safety myself (those were different times).
 I found this piece of work an order of magnitude harder than that.
 
-I say in the ShipReq [About](https://shipreq.com/about) page that [ShipReq](https://shipreq.com) is like a compiler.
+I say in the ShipReq [About](https://shipreq.com/about) page that ShipReq is like a compiler.
 The big feature that I completed recently was the most compiler-like feature yet, and to my surprise it's specifically that property that made it so deceptively hard.
 What is the feature?
 Basically when you have a bunch of requirements / issues / design documents / whatever,
@@ -37,8 +37,8 @@ But there are surprising similarities. Let's take a look...
 
 ## Similarity #1: Relationships
 
-Nearly all data relationships in [ShipReq](https://shipreq.com) are many-to-many / [DAGs](https://en.wikipedia.org/wiki/Directed_acyclic_graph).
-Some views in [ShipReq](https://shipreq.com) present data as flat lists but under-the-hood it's very rare that anything is stored as a flat list,
+Nearly all data relationships in ShipReq are many-to-many / [DAGs](https://en.wikipedia.org/wiki/Directed_acyclic_graph).
+Some views in ShipReq present data as flat lists but under-the-hood it's very rare that anything is stored as a flat list,
 and there's nearly always a way to view the same data as a graph or tree.
 
 If you squint a bit, source code is kind of like that too.
@@ -48,8 +48,8 @@ When we start considering relationships like imports and methods calling other m
 
 ## Similarity #2: Interactions
 
-Secondly, this new feature in [ShipReq](https://shipreq.com) is very configurable by users.
-It's a major goal of [ShipReq](https://shipreq.com) to avoid hardcoding implicit assumptions and find appropriate and configurable abstractions.
+Secondly, this new feature in ShipReq is very configurable by users.
+It's a major goal of ShipReq to avoid hardcoding implicit assumptions and find appropriate and configurable abstractions.
 Obviously having users need to reconfigure everything all the time would be a terrible burden so we provide pre-configured
 complete setups with best-practices which users can (optionally) use, and can reconfigure without restriction to best serve their needs.
 What that means from a coding point of view, is that we never know the automation rules at compile-time.
@@ -64,7 +64,7 @@ illegal (i.e. bugs).
 
 This too is like writing a compiler.
 For example, the Java compiler doesn't hardcode the privacy level of your classes; it allows you to set it yourself.
-Where as [ShipReq](https://shipreq.com) might have a UI page for config, in Java you have modifier keywords such that `public class Hello` is different than `private class Hello`.
+Where as ShipReq might have a UI page for config, in Java you have modifier keywords such that `public class Hello` is different than `private class Hello`.
 From the perspective of writing a compiler, these are runtime values with runtime rules.
 When we consider additional keywords like `final` and `abstract` we start getting into what I meant about combinational explosions.
 The Java compiler, at runtime, has to ensure all possible combinations are valid. For example, it will reject the following code:
@@ -87,7 +87,7 @@ Imagine you were writing your own Java compiler.
 It's entirely up to you to think about those illegal combinations and then write the code to catch them.
 I think we all take for granted things like marking a method as private and then knowing it's impossible to
 call externally, but under-the-hood that it's not impossible at all. You're literally relying on someone's
-`if` statement in the right place. Just like my [ShipReq](https://shipreq.com) example, it's all value inspection at runtime,
+`if` statement in the right place. Just like my ShipReq example, it's all value inspection at runtime,
 with no guarantees about how all the features will interact. The class/method privacy feature interacting
 with `final` and `abstract` features is mentally easy enough but every single feature has the ability to
 interact badly with something else and it's not always easy to identify those combinations.
@@ -141,7 +141,7 @@ They're on their own and can only use type safety to guard the bottom layers of 
 
 It's a necessary part of the process that things will go wrong, and users need to be provided meaningful feedback.
 
-In the case of [ShipReq](https://shipreq.com), it will...
+In the case of ShipReq, it will...
 
 - detect changes that are always wrong, and prevent the user from making those changes. These are errors.
 - detect data/config that has become wrong, modify derivation accordingly, and present them to users in a fully-comprehensible manner. These are warnings.
@@ -342,7 +342,7 @@ Make sure that your property testing library is able to reproduce its tests.
 Each time it finds a failure, extract the data and add it as a unit test.
 My OSS [Nyaya](https://github.com/japgolly/nyaya) library has a feature called a bug-hunt that allows me to tell it
 _"hey, run n tests across m threads starting at seed x and one test per seed"_.
-When I was working on aforementioned [ShipReq](https://shipreq.com) feature it found many issues,
+When I was working on aforementioned ShipReq feature it found many issues,
 usually within 30 seconds, until it ended up running for an hour or two without finding a failure.
 I can't guarantee that my code doesn't still have some crazy bug in it but with all of my unit tests
 and over a few hours of systematic testing, I can at least rest assured that it's
@@ -372,7 +372,7 @@ I should also mention that you can use [TLA+](https://learntla.com) to obtain a 
 You basically build up a very abstract state machine and it will brute-force a proof by testing all possible combinations.
 In very specific cases, it's a godsend!
 No matter how rare the edge case, [TLA+](https://learntla.com) will find it; usually within seconds.
-I've used it with [ShipReq](https://shipreq.com) to guarantee things like eventual consistency, and making sure that users never see stale data.
+I've used it with ShipReq to guarantee things like eventual consistency, and making sure that users never see stale data.
 You could spend a few days and end up with a guarantee that your logic holds in all possible cases.
 For verifying compiler-like code though, I haven't tried it and you'd likely have to sit down and think
 very, _very_, **very** hard about how to model your logic in a compatible and efficient way.
@@ -418,7 +418,7 @@ So maybe buy your everyday-language's authors a coffee if you can, or
 show your appreciation with just a nice _thank you_ message.
 
 I'm so grateful to all the people upon whose work I base my own.
-Part of what drives me personally, is that I hope that I can produce a new generation of benefit and quality in [ShipReq](https://shipreq.com)
+Part of what drives me personally, is that I hope that I can produce a new generation of benefit and quality in ShipReq
 that my users will just take for granted and think to themselves
 _"yep, tech's evolved again, this 2021 tech is my baseline now"_,
 then go on to build what they think is revolutionary.
